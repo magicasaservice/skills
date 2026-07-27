@@ -11,7 +11,7 @@ description: >
   state composables, emitter-based communication, inversion of control, and
   bundled options.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Magic as a Service™ Component Architecture

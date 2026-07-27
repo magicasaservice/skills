@@ -6,7 +6,7 @@ description: >
   reviewing X, when the user mentions "keyword", or when working with files
   of type Y. Max 1024 characters.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Skill Title

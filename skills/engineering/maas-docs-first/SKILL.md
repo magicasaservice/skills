@@ -8,7 +8,7 @@ description: >
   "configure", or "use" any third-party or internal technology. Requires
   reading the technology’s documentation before using it.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Magic as a Service™ Docs First

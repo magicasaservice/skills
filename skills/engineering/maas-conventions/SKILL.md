@@ -8,7 +8,7 @@ description: >
   Covers Prettier formatting, ESLint setup, TypeScript conventions, comment
   style, and Git commit rules.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Magic as a Service™ Conventions

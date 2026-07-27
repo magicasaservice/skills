@@ -8,7 +8,7 @@ description: >
   this component", or to edit any .md file in a maas repo. Covers tone of
   voice, page structure, and documentation principles.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Magic as a Service™ Documentation Style

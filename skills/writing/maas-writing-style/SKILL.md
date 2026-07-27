@@ -8,7 +8,7 @@ description: >
   maas project. Covers tone of voice, narrative structure, and the stylistic
   devices that make the writing recognisable.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Magic as a Service™ Writing Style

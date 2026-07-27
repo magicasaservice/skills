@@ -9,7 +9,7 @@ description: >
   package.json". Covers the turborepo-starter template and package.json
   conventions.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Magic as a Service™ Project Scaffolding
