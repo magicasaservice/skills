@@ -13,10 +13,10 @@ metadata:
 
 # Magic as a Service™ Writing Style
 
-Write the way Magic as a Service™ writes on maas.engineering/posts: measured,
-narrative, quietly funny, generous with credit. Reference posts:
-"Introducing Vue Equipment", "Module Inception", "Decoupling with State
-Composables". Verbatim excerpts for every rule: `references/voice-examples.md`.
+Write the way Magic as a Service™ writes: measured, narrative, quietly
+funny, generous with credit. Examples for every rule:
+`references/voice-examples.md` (product and project names in the examples
+are invented).
 
 ## Voice
 
@@ -30,13 +30,14 @@ Composables". Verbatim excerpts for every rule: `references/voice-examples.md`.
   alternative’s merits: "While Pinia definitely has its use cases, it might be
   a bit overkill for simply storing some boolean, string and number values.
   That doesn’t mean it should not be used for more complex state."
-- **Dry humor in small doses.** One playful title pun ("Module Inception"), a
-  bracketed aside ("15 [and counting] Nuxt modules"), a deadpan understatement
-  ("we mostly copy paste some code, change a few variables and names and call
-  it a day"). Never more than a few per post; never in the technical core.
+- **Dry humor in small doses.** One playful title pun (a release post titled
+  after a film), a bracketed aside ("a dozen [and counting] Nuxt modules"), a
+  deadpan understatement ("we mostly copy paste some code, change a few
+  variables and names and call it a day"). Never more than a few per post;
+  never in the technical core.
 - **Credit people by name.** Community members, teammates, and inspirations
-  are named and thanked: "Finally I’d like to thank Daniel Roe for always
-  being available for a quick and insightful chat."
+  are named and thanked, usually in the closing — a specific person and what
+  they actually did, not a generic shout-out.
 - **Be honest about detours.** Failed first attempts and later corrections
   stay in the story, even when they undercut it: "we later realised it was
   rather bloated and a bit of a performance bottleneck".
@@ -47,7 +48,8 @@ Composables". Verbatim excerpts for every rule: `references/voice-examples.md`.
 
 - **Open with a standfirst.** One or two sentences under the title that
   summarize the whole piece with a hook: "The story about why and how we
-  ended up shipping 15 [and counting] Nuxt modules in a single npm package."
+  ended up shipping a dozen [and counting] Nuxt modules in a single npm
+  package."
 - **Tell it as a story.** The default arc is: context → problem → (first
   attempt that didn’t hold up) → solution → conclusion. Ground it in real
   projects, real clients, real dates.

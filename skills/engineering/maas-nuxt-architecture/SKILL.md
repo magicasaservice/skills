@@ -73,7 +73,7 @@ export enum DrawerIds {
 }
 ```
 
-Usage is always `useMagicDrawer(DrawerIds.Settings)` — raw ID strings never
+Usage is always `useDrawer(DrawerIds.Settings)` — raw ID strings never
 appear inline. Module-scoped IDs get their own `utils/enums.ts` inside the
 module. This is the one sanctioned use of `enum`; elsewhere prefer
 `as const` unions.

@@ -14,8 +14,7 @@ metadata:
 # Magic as a Service™ Documentation Style
 
 Write documentation the way Magic as a Service™ does: direct, opinionated, and
-example-first. The reference implementation is the Vue Equipment docs
-(vue.equipment).
+example-first. Example names below are illustrative.
 
 ## Voice
 
@@ -49,9 +48,9 @@ example-first. The reference implementation is the Vue Equipment docs
   A section body is often a single sentence plus a fenced code block. Lead
   component docs with a live demo before any explanation.
 - **Open with what + when.** The first line after a page title says what the
-  thing is and when to reach for it: "MagicDrawer is a flexible, touch
-  enabled, unstyled drawer component. Useful for shopping carts, menus, as a
-  modal replacement on mobile devices and the like."
+  thing is and when to reach for it: "SideSheet is a flexible, touch enabled,
+  unstyled sheet component. Useful for shopping carts, menus, as a modal
+  replacement on mobile devices and the like."
 - **Docs live next to source.** A component’s documentation is co-located with
   its code (`index.md` beside `index.ts`) so it evolves in the same PR.
 - **Identical skeleton per page type.** Every plugin/component doc follows the

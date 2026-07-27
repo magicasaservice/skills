@@ -1,11 +1,13 @@
-# Patterns — real code from Vue Equipment
+# Patterns — worked example
 
-Condensed from `@maas/vue-equipment`; MagicDrawer is the canonical example.
+A drawer plugin illustrates every pattern; the names are illustrative, the
+shapes are the convention.
 
 ## App-scoped state store factory
 
-The primitive everything builds on. Module scope would leak state across SSR
-requests, so the store attaches to the Vue app instance:
+The primitive everything builds on, kept in a shared utils package. Module
+scope would leak state across SSR requests, so the store attaches to the Vue
+app instance:
 
 ```ts
 export function createStateStore<T>(
@@ -21,15 +23,15 @@ export function createStateStore<T>(
       return ref(setInitialValue()) as Ref<T>
     }
 
-    if (!app.config.globalProperties.__VEStateStores) {
-      app.config.globalProperties.__VEStateStores = new Map<string, Ref<T>>()
+    if (!app.config.globalProperties.__stateStores) {
+      app.config.globalProperties.__stateStores = new Map<string, Ref<T>>()
     }
 
-    let store = app.config.globalProperties.__VEStateStores.get(key)
+    let store = app.config.globalProperties.__stateStores.get(key)
 
     if (!store) {
       store = ref(setInitialValue()) as Ref<T>
-      app.config.globalProperties.__VEStateStores.set(key, store)
+      app.config.globalProperties.__stateStores.set(key, store)
     }
 
     return store
@@ -43,13 +45,13 @@ Find-or-create by ID; options merged on initialize; cleanup when the last
 consumer’s scope disposes:
 
 ```ts
-const getDrawerStateStore = createStateStore<DrawerState[]>('MagicDrawer', () => [])
+const getDrawerStateStore = createStateStore<Array<DrawerState>>('drawer', () => [])
 
 export function useDrawerState(id: MaybeRef<string>) {
   const drawerStateStore = getDrawerStateStore()
   let scopeCounted = false
 
-  function initializeState(options?: MagicDrawerOptions) {
+  function initializeState(options?: DrawerOptions) {
     const currentId = toValue(id)
     let state = drawerStateStore.value.find((entry) => entry.id === currentId)
 
@@ -98,12 +100,12 @@ const customDefu = createDefu((obj, key, value) => {
 One typed mitt instance per app, shared through the same factory:
 
 ```ts
-const getEmitter = createStateStore<Emitter<MagicEmitterEvents>>(
-  'MagicEmitter',
-  () => mitt<MagicEmitterEvents>()
+const getEmitter = createStateStore<Emitter<AppEmitterEvents>>(
+  'emitter',
+  () => mitt<AppEmitterEvents>()
 )
 
-export function useMagicEmitter() {
+export function useEmitter() {
   const emitter = getEmitter()
   return { on: emitter.value.on, off: emitter.value.off, emit: emitter.value.emit }
 }
@@ -124,36 +126,36 @@ hatch over options:
 
 ```vue
 <template>
-  <vue-primitive
-    class="magic-drawer-trigger"
+  <app-primitive
+    class="drawer-trigger"
     :as-child="asChild"
     :data-active="isActive"
     :data-disabled="mappedDisabled"
     @click="onClick"
   >
     <slot :active="isActive" :disabled="mappedDisabled" />
-  </vue-primitive>
+  </app-primitive>
 </template>
 
 <script lang="ts" setup>
-interface MagicDrawerTriggerProps {
+interface DrawerTriggerProps {
   id?: MaybeRef<string>
   disabled?: boolean
   asChild?: boolean
 }
 
-const { id, disabled, asChild } = defineProps<MagicDrawerTriggerProps>()
+const { id, disabled, asChild } = defineProps<DrawerTriggerProps>()
 
-const injectedInstanceId = inject(MagicDrawerInstanceId, undefined)
+const injectedInstanceId = inject(DrawerInstanceId, undefined)
 const mappedInstanceId = computed(() => id ?? injectedInstanceId)
 
-magicError.assert(mappedInstanceId.value, {
+assertContext(mappedInstanceId.value, {
   message:
-    'MagicDrawerTrigger must be nested inside MagicDrawerProvider or an id must be provided',
+    'DrawerTrigger must be nested inside DrawerProvider or an id must be provided',
   errorCode: 'missing_instance_id',
 })
 
-const { isActive, open, close } = useMagicDrawer(mappedId)
+const { isActive, open, close } = useDrawer(mappedId)
 const state = useDrawerState(mappedId).initializeState()
 
 // Direct prop wins over bundled options
@@ -161,8 +163,8 @@ const mappedDisabled = computed(() => disabled ?? state.options.disabled)
 </script>
 
 <style>
-.magic-drawer-trigger {
-  cursor: var(--magic-drawer-trigger-cursor, pointer);
+.drawer-trigger {
+  cursor: var(--drawer-trigger-cursor, pointer);
 }
 </style>
 ```

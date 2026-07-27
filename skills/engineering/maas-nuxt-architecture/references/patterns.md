@@ -40,10 +40,10 @@ One composable, called once from `app.vue`, owns all cross-module reactions:
 export function useControlPlane() {
   const omniBarApi = useOmniBar(OmniBarIds.App)
   const chatDockApi = useChatDock(ChatDockIds.App)
-  const mainMenuApi = useMagicCommand(CommandIds.MainMenu)
-  const settingsDrawerApi = useMagicDrawer(DrawerIds.Settings)
+  const mainMenuApi = useCommandMenu(CommandIds.MainMenu)
+  const settingsDrawerApi = useDrawer(DrawerIds.Settings)
 
-  function enterCallback(payload: MagicEmitterEvents['enter']) {
+  function enterCallback(payload: AppEmitterEvents['enter']) {
     switch (payload) {
       case CommandIds.MainMenu:
         settingsDrawerApi.close()

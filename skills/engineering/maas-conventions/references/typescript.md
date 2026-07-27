@@ -74,6 +74,69 @@ function first<T>(items: T[]): T | undefined {
 The same applies to non-generic types: prefer `UserProfile`, `OrderStatus`,
 `RequestContext` over abbreviations that only make sense in the moment.
 
+## Object payloads over positional parameters
+
+A single value stays positional; anything more becomes one object. Call
+sites read as named arguments, and new parameters never force a reordering.
+
+```ts
+// Preferred
+interface CreateOrderPayload {
+  customer: Customer
+  items: Array<OrderItem>
+  discount?: Discount
+}
+
+function createOrder({ customer, items, discount }: CreateOrderPayload) {
+  // ...
+}
+
+createOrder({ customer, items, discount })
+
+// Fine — a single value
+function formatPrice(cents: number): string {
+  return `${(cents / 100).toFixed(2)} €`
+}
+
+// Avoid — positional arguments the call site cannot name
+function createOrder(customer: Customer, items: Array<OrderItem>, discount?: Discount) {}
+createOrder(customer, items, undefined)
+```
+
+## `switch` over long `if`/`else` chains
+
+When branching on one value, guard clauses handle the exceptional cases
+first and a `switch` handles the enumeration.
+
+```ts
+// Preferred
+function labelFor(status: OrderStatus): string {
+  switch (status) {
+    case 'draft':
+      return 'Draft'
+    case 'paid':
+      return 'Paid'
+    case 'shipped':
+      return 'Shipped'
+    default:
+      return 'Unknown'
+  }
+}
+
+// Avoid
+function labelFor(status: OrderStatus): string {
+  if (status === 'draft') {
+    return 'Draft'
+  } else if (status === 'paid') {
+    return 'Paid'
+  } else if (status === 'shipped') {
+    return 'Shipped'
+  } else {
+    return 'Unknown'
+  }
+}
+```
+
 ## No `as` type assertions
 
 An assertion tells the compiler to stop checking; honest narrowing keeps the

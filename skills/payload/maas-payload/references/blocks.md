@@ -1,8 +1,10 @@
-# Blocks and transformers — real code from maas-backend
+# Blocks and transformers — worked example
+
+Section and field names are illustrative; the shapes are the convention.
 
 ## The template
 
-`src/sections/_template.ts` (kept commented-out in the repo as a scaffold):
+Keep a commented-out scaffold at `src/sections/_template.ts`:
 
 ```ts
 import type { Block } from 'payload'
@@ -28,15 +30,14 @@ type XXXSection = ReturnType<typeof xxxSectionTransformer>
 export { xxxSection, xxxSectionTransformer, type XXXSection }
 ```
 
-## A real section
+## A worked section
 
-`src/sections/cards/cardsGrid.ts` — fields from the shared library, text
+`src/sections/teasers/teaserGrid.ts` — fields from the shared library, text
 passed through the house text utilities, presentation split into `layout`:
 
 ```ts
-import { extendedItemsField } from '@/fields/item'
+import { itemsField } from '@/fields/item'
 import { minimalContainerField } from '@/fields/container'
-import { annotationField } from '@/fields/annotation'
 import { calloutField } from '@/fields/callout'
 import { headlineField } from '@/fields/headline'
 
@@ -47,29 +48,22 @@ import { convertNewline } from '../../utilities/convertNewline'
 import { sanitizeText } from '../../utilities/sanitizeText'
 
 import type { Block } from 'payload'
-import type { CardsGridSectionSchema } from '../../types/auto-generated'
+import type { TeaserGridSectionSchema } from '../../types/auto-generated'
 
-const cardsGridSection: Block = {
-  slug: 'cards-grid',
-  interfaceName: 'CardsGridSectionSchema',
-  fields: [
-    calloutField,
-    headlineField,
-    extendedItemsField,
-    minimalContainerField,
-    annotationField,
-  ],
+const teaserGridSection: Block = {
+  slug: 'teaser-grid',
+  interfaceName: 'TeaserGridSectionSchema',
+  fields: [calloutField, headlineField, itemsField, minimalContainerField],
 }
 
-function cardsGridSectionTransformer(section: CardsGridSectionSchema) {
+function teaserGridSectionTransformer(section: TeaserGridSectionSchema) {
   return {
     id: section.id ?? '',
     blockType: section.blockType,
     data: {
-      callout: section.callout ?? '',
+      callout: sanitizeText(section.callout ?? ''),
       headline: convertNewline(section.headline ?? ''),
       items: itemsTransformer(section.items),
-      annotation: sanitizeText(section.annotation ?? ''),
     },
     layout: {
       container: containerTransformer(section.container),
@@ -77,9 +71,9 @@ function cardsGridSectionTransformer(section: CardsGridSectionSchema) {
   }
 }
 
-type CardsGridSection = ReturnType<typeof cardsGridSectionTransformer>
+type TeaserGridSection = ReturnType<typeof teaserGridSectionTransformer>
 
-export { cardsGridSection, cardsGridSectionTransformer, type CardsGridSection }
+export { teaserGridSection, teaserGridSectionTransformer, type TeaserGridSection }
 ```
 
 ## Registration and dispatch

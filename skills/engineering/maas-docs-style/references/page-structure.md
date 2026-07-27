@@ -1,7 +1,6 @@
 # Page structure — component/plugin docs
 
-The canonical skeleton, in order (reference: `MagicDrawer/index.md` in
-vue-equipment):
+The canonical skeleton, in order. Component names are illustrative.
 
 ```
 # ComponentName
@@ -35,17 +34,17 @@ Rules that make the skeleton work:
   stays minimal.
 - Examples are real, runnable demo files, not inline pseudo-code.
 
-## Voice examples (verbatim from vue.equipment)
+## Voice examples
 
 Opening pitch:
 
-> MagicDrawer is a flexible, touch enabled, unstyled drawer component. Useful
+> SideSheet is a flexible, touch enabled, unstyled sheet component. Useful
 > for things like shopping carts, menus, as a modal replacement on mobile
 > devices and the like.
 
 Instruction:
 
-> If you are using Vue, import and add `MagicDrawerPlugin` to your app.
+> If you are using Vue, import and add `SideSheetPlugin` to your app.
 
 Opinion:
 
@@ -56,11 +55,11 @@ Opinion:
 
 Cause-first caveat:
 
-> In order for the drawer to differentiate when the user scrolls and when the
-> user drags, any scrollable containers within the drawer need to have their
+> In order for the sheet to differentiate when the user scrolls and when the
+> user drags, any scrollable containers within the sheet need to have their
 > overflow value explicitly set to `auto` or `scroll`.
 
 Tip (kept short, states the default and the alternative):
 
-> `MagicDrawerTeleport` is optional. Omit it to keep the drawer mounted at all
+> `SideSheetTeleport` is optional. Omit it to keep the sheet mounted at all
 > times, with visibility controlled via `v-show`.

@@ -59,8 +59,47 @@ exactly one clearly scoped concern, and concerns never cross-pollute:
   consumers. If two units need each other, extract the shared part into a
   third.
 
-Vue Equipment is the reference implementation of this idea — see the
-`maas-component-architecture` skill for how it plays out in practice.
+This applies at every layer, not just the frontend: an endpoint handler
+authenticates and delegates, it does not format; a data transformer owns
+shape conversion, it does not fetch; a mail template renders, it does not
+decide who receives it. API design, CMS collections, CLI scripts, and
+components all answer the same question at every boundary: who owns this?
+
+See the `maas-component-architecture` skill for how this idea plays out in
+component code.
+
+## Boundaries
+
+External data never enters the application in its raw shape:
+
+- **Transform at the edge.** API responses, CMS documents, and third-party
+  payloads pass through one transformer that produces a shape the
+  application owns. Downstream code never handles the external format, so
+  external changes stay contained in one file.
+- **Null-coalesce at the boundary.** The transformer resolves every optional
+  to a safe default. Nothing downstream deals with `undefined`.
+- **Derive the type from the transformation.**
+  `type Page = ReturnType<typeof pageTransformer>` — the shape is written
+  once, in code, and the type follows it.
+- **Read configuration in one place.** Secrets and environment variables are
+  resolved in a single config module (or the framework’s runtime config) and
+  passed on. `process.env` never appears in handlers or business logic.
+
+## Functions
+
+- **One thing per function, no hidden side effects.** A function either
+  computes and returns a value, or performs the single effect its name
+  states. It never does both, and never touches anything the name doesn’t
+  announce (mutating arguments, writing shared state).
+- **Parameters are an object unless there is a single value.** One value
+  stays positional (`formatPrice(cents)`); anything more takes a payload
+  object, so call sites read as named arguments and parameters can be added
+  without reordering: `createOrder({ customer, items, discount })`.
+- **Prefer `switch` over long `if`/`else` chains** when branching on one
+  value. Guard clauses handle the exceptional cases first; a `switch` handles
+  the enumeration.
+
+Examples: `references/typescript.md`.
 
 ## Comments
 
@@ -73,7 +112,7 @@ Write as few comments as possible — a comment has to earn its place:
 - **Never comment CSS** — no `/* … */` in `.css`/`.scss` files or `<style>`
   blocks. If a rule needs justification, it belongs in the commit message.
 - In comment **prose**, use typographic apostrophes for contractions and
-  possessives — "the tray’s home", "doesn’t". Code inside a comment (string
+  possessives — "the panel’s home", "doesn’t". Code inside a comment (string
   literals like `'inner'`, identifiers) keeps straight ASCII quotes.
 
 The `// Public state` / `// Public functions` grouping comments in composables

@@ -15,10 +15,10 @@ metadata:
 
 # Magic as a Service™ Payload
 
-How Payload backends are built (reference implementation: `maas-backend` in
-the platform repo). The governing idea: **the frontend never sees a Payload
-document.** Every piece of content passes through a transformer that produces
-a stable, null-safe, frontend-owned shape.
+How we build Payload backends. The governing idea: **the frontend never sees
+a Payload document.** Every piece of content passes through a transformer
+that produces a stable, null-safe, frontend-owned shape. Example names are
+illustrative.
 
 ## Blocks and sections: the three-export contract
 
@@ -61,8 +61,7 @@ Fields are shared, one per file, under `src/fields/`:
 - One collection per file under `src/collections/`; listed in
   `payload.config.ts` grouped by admin `group` with comment banners.
 - Small collection = single file with inline endpoint handlers; large
-  collection = directory with `index.ts`, `endpoints/`, `fields/`
-  (`products` is the reference).
+  collection = directory with `index.ts`, `endpoints/`, `fields/`.
 - Hooks are formulaic: `createCacheHooks(tag)` for draft-aware cache
   invalidation on ~every public collection; field-level `beforeValidate`
   slugify; field-level derived values. Nothing else without good reason.
@@ -71,7 +70,7 @@ Fields are shared, one per file, under `src/fields/`:
 
 - The backend package exports a pure type barrel (`src/index.ts`,
   `export type *` of all transformer return types). Frontends
-  `import type { PageTransformerReturn } from 'maas-backend'` — end-to-end
+  `import type { PageTransformerReturn } from 'cms-backend'` — end-to-end
   types with no SDK and no extra codegen.
 - Content is served by hand-written custom endpoints returning transformer
   output, uniform across collections:

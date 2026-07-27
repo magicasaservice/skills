@@ -38,7 +38,8 @@ documentation.
 
 - Adding or updating any dependency.
 - Using a plugin or module for the first time in a session — including
-  internal ones (`@maas/vue-equipment`, `@maas/config`, Payload plugins).
+  internal ones (`@maas/config`, shared component libraries, Payload
+  plugins).
 - Configuring tools (Nuxt modules, Vite/Turborepo config, CI).
 - Any API the agent has not verified against docs in the current session.
 

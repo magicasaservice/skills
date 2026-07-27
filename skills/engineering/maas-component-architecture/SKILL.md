@@ -3,8 +3,7 @@ name: maas-component-architecture
 description: >
   This skill should be used when designing or building Vue/Nuxt components,
   plugins, composables, or component libraries for Magic as a Service™ — and
-  when
-  deciding how components share state, communicate, or expose their API.
+  when deciding how components share state, communicate, or expose their API.
   Trigger on requests to "build a component", "create a plugin/composable",
   "share state between components", "add events/callbacks", or questions about
   props design, state management, or component communication. Covers ID-keyed
@@ -16,12 +15,10 @@ metadata:
 
 # Magic as a Service™ Component Architecture
 
-The design ideas behind Vue Equipment (vue.equipment) — apply them to any
-component or library built at Magic as a Service™. Reference:
-https://maas.engineering/posts/vue-equipment-decoupling-with-state-composables
-
-The common thread: **components must not depend on their position in the
-component tree.** Everything below serves that goal.
+How we design interactive components and component libraries. The common
+thread: **components must not depend on their position in the component
+tree.** Everything below serves that goal. Example names (a drawer plugin)
+are illustrative.
 
 ## ID-keyed state composables
 
@@ -29,9 +26,9 @@ Components can natively only reach state in themselves, their parents, or
 their children. Instead of Pinia (dependency bloat) or prop drilling, shared
 state lives in a store *outside* the component tree, keyed by a unique ID:
 
-- State and ID are tightly coupled: `useXState(id)` finds or creates the state
-  for that ID. Any component, anywhere in the tree, calling it with the same
-  ID gets the same reactive object.
+- State and ID are tightly coupled: `useDrawerState(id)` finds or creates the
+  state for that ID. Any component, anywhere in the tree, calling it with the
+  same ID gets the same reactive object.
 - The store is scoped to the Vue app instance (not module scope) so SSR
   requests never leak state into each other.
 - State is **ref-counted**: each consuming scope increments a counter on
@@ -63,9 +60,9 @@ styling, and composition:
 - A provider component supplies the instance ID via injection; every child
   resolves `id ?? injectedInstanceId`. Each part therefore works nested inside
   the provider *or* standalone with an explicit ID.
-- Polymorphic rendering (`asChild` via vue-primitive): the consumer can
-  replace the rendered element entirely; the component only contributes
-  behavior. Slots expose internal state as slot props.
+- Polymorphic rendering (`asChild` via a shared primitive component): the
+  consumer can replace the rendered element entirely; the component only
+  contributes behavior. Slots expose internal state as slot props.
 - Ship unstyled: only functionally required CSS. State is surfaced as data
   attributes (`data-active`, `data-disabled`) and every visual value is a CSS
   variable with a fallback — CSS is the styling API.
@@ -79,14 +76,14 @@ styling, and composition:
 Every pattern above depends on concerns staying cleanly scoped — nothing
 cross-pollutes:
 
-- **One composable per concern.** MagicDrawer’s logic is split into private
+- **One composable per concern.** A drawer plugin’s logic splits into private
   composables named by what they own: `useDrawerState`, `useDrawerDrag`,
   `useDrawerSnap`, `useDrawerWheel`, `useDrawerProgress`,
   `useDrawerCallback`. Drag logic never computes snap points; snap logic
-  never touches the DOM wheel handling. When a new concern appears, it gets a
+  never touches the wheel handling. When a new concern appears, it gets a
   new composable — existing ones don’t grow sideways.
 - **One public façade.** The private composables stay private; consumers get
-  a single `useMagicX` composable that composes them. Internal refactors
+  a single `useDrawer` composable that composes them. Internal refactors
   never leak into the public API.
 - **Concerns meet at the state object.** The ID-keyed state is the one shared
   seam: each concern reads and writes the fields it owns. No composable calls
@@ -112,7 +109,7 @@ per setting:
 ## Declaring props
 
 - Props are a TypeScript `interface` named after the file:
-  `MagicDrawerTrigger.vue` → `interface MagicDrawerTriggerProps`.
+  `DrawerTrigger.vue` → `interface DrawerTriggerProps`.
 - Destructure in `defineProps`, with defaults set in the destructure (Vue 3.5
   reactive props destructure):
   `const { size = 'md' } = defineProps<ExampleProps>()`.
@@ -156,4 +153,4 @@ object carries Vue transition **names**, not timing values:
 
 ## Additional resources
 
-- `references/patterns.md` — the patterns with real code from Vue Equipment
+- `references/patterns.md` — the patterns as a worked example
