@@ -12,6 +12,7 @@
     "./skills/engineering/maas-component-architecture",
     "./skills/engineering/maas-project-scaffolding",
     "./skills/engineering/maas-docs-first",
+    "./skills/engineering/maas-nuxt-architecture",
     "./skills/payload/maas-payload",
     "./skills/writing/maas-writing-style"
   ]

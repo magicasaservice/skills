@@ -75,6 +75,7 @@ no-AI-attribution Git rule at the tool level, not just by instruction:
 | `engineering` | `maas-component-architecture` | Design ideas behind Vue Equipment: state composables, emitter, IoC    |
 | `engineering` | `maas-project-scaffolding`    | New projects from turborepo-starter; package.json conventions         |
 | `engineering` | `maas-docs-first`             | Read a technology’s docs before using it; ask when none are found     |
+| `engineering` | `maas-nuxt-architecture`      | Feature modules, control plane, ID enums, data-attribute contracts    |
 | `payload`     | `maas-payload`                | Block+transformer contract, field library, typed frontend bridge      |
 | `writing`     | `maas-writing-style`          | Tone of voice and narrative structure for articles and blog posts     |
 
@@ -120,7 +121,8 @@ skills/
 │   │   ├── maas-docs-style/
 │   │   ├── maas-component-architecture/
 │   │   ├── maas-project-scaffolding/
-│   │   └── maas-docs-first/
+│   │   ├── maas-docs-first/
+│   │   └── maas-nuxt-architecture/
 │   ├── payload/
 │   │   └── maas-payload/
 │   └── writing/
