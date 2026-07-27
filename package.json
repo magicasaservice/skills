@@ -1,0 +1,21 @@
+{
+  "name": "@maas/skills",
+  "contributors": [
+    {
+      "name": "Robin Vey",
+      "url": "https://github.com/robinscholz"
+    },
+    {
+      "name": "Christoph Jeworutzki",
+      "url": "https://github.com/ChristophJeworutzki"
+    }
+  ],
+  "repository": "magicasaservice/skills",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Essential skills for internal agentic workflows",
+  "type": "module",
+  "scripts": {
+    "validate": "claude plugin validate ."
+  }
+}
