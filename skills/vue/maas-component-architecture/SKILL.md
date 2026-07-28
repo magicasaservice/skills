@@ -5,9 +5,10 @@ description: >
   plugins, composables, or component libraries for Magic as a Service™ — and
   when deciding how components share state, communicate, or expose their API.
   Trigger on requests to "build a component", "create a plugin/composable",
-  "share state between components", "add events/callbacks", or questions about
-  props design, state management, or component communication. Covers ID-keyed
-  state composables, emitter-based communication, inversion of control, and
+  "share state between components", "add events/callbacks", or questions
+  about component APIs, state management, or component communication. Covers
+  the standalone/module distinction, ID-keyed state composables,
+  emitter-based communication, inversion of control, styling APIs, and
   bundled options.
 metadata:
   version: "1.0.0"
@@ -17,14 +18,40 @@ metadata:
 
 How we design interactive components and component libraries. The common
 thread: **components must not depend on their position in the component
-tree.** Everything below serves that goal. Example names (a drawer plugin)
+tree.** Everything below serves that goal. Example names (a drawer module)
 are illustrative.
+
+## Standalone components and modules
+
+Every component is one of two kinds, and the choice decides which patterns
+below apply:
+
+- **A standalone component** is self-contained: one SFC (plus at most small
+  internal children), local state, and an API of props, emits, and slots.
+  No shared store, no module folder. Buttons, badges, inputs, cards.
+- **A module** encapsulates many interdependent components and composables —
+  a provider/trigger/content set, a multi-part widget. It bundles its
+  components, private composables, machines, types, and symbols; internals
+  are reachable only from inside. **One composable is the entire public
+  API**: consumers interact with the module exclusively through
+  `useDrawer(id)` — state, commands, and events all flow through it. The
+  components are markup; the composable is the API.
+
+The deciding question: do separate parts need to coordinate, or does
+anything need to reach this component from elsewhere in the tree? Then it is
+a module. Start standalone; promote to a module when the second coordinated
+part appears — never preemptively.
+
+Modules never import another module’s internals, and there is no second
+entry point. If two modules must coordinate, that happens in the app’s
+control plane (see `maas-nuxt-architecture`).
 
 ## ID-keyed state composables
 
-Components can natively only reach state in themselves, their parents, or
-their children. Instead of Pinia (dependency bloat) or prop drilling, shared
-state lives in a store *outside* the component tree, keyed by a unique ID:
+The state mechanism for modules. Components can natively only reach state in
+themselves, their parents, or their children. Instead of Pinia (dependency
+bloat) or prop drilling, shared state lives in a store *outside* the
+component tree, keyed by a unique ID:
 
 - State and ID are tightly coupled: `useDrawerState(id)` finds or creates the
   state for that ID. Any component, anywhere in the tree, calling it with the
@@ -54,8 +81,8 @@ direct method calls:
 
 ## Inversion of control
 
-The library provides behavior; the consumer stays in charge of markup,
-styling, and composition:
+For standalone components and modules alike: the library provides behavior;
+the consumer stays in charge of markup, styling, and composition:
 
 - A provider component supplies the instance ID via injection; every child
   resolves `id ?? injectedInstanceId`. Each part therefore works nested inside
@@ -63,20 +90,47 @@ styling, and composition:
 - Polymorphic rendering (`asChild` via a shared primitive component): the
   consumer can replace the rendered element entirely; the component only
   contributes behavior. Slots expose internal state as slot props.
-- Ship unstyled: only functionally required CSS. State is surfaced as data
-  attributes (`data-active`, `data-disabled`) and every visual value is a CSS
-  variable with a fallback — CSS is the styling API.
+- Ship unstyled: only functionally required CSS. Everything visual goes
+  through the styling API below.
 - Expose injection keys and types so consumers can swap out whole parts.
 - Fail loudly when the contract is broken: assert required context with a
   clear message and a snake_case error code, documented one-for-one in the
   docs.
+
+## Styling API: data attributes and CSS variables
+
+CSS is the public styling surface — components never expose style props or
+state classes:
+
+- **State lives in data attributes.** Components surface their state as
+  `data-*` attributes (`data-active`, `data-disabled`, `data-dragging`).
+  They are the observability contract *and* the styling hooks: consumers and
+  the component itself style with attribute selectors
+  (`[data-dragging='true']`), never with toggled state classes. Bind
+  optional attributes with `:data-focused="focused || null"` so false
+  renders as absent.
+- **Public CSS variables are the theme contract.** Namespaced by component
+  (`--drawer-height`, `--drawer-trigger-cursor`), always consumed with a
+  fallback that doubles as the default
+  (`var(--drawer-trigger-cursor, pointer)`), and documented one-for-one in
+  the component’s CSS Variables docs section. Consumers override them
+  freely.
+- **Internal CSS variables collapse the namespace to initials.** Public
+  variables carry the full component name; internal ones abbreviate it — for
+  a `side-sheet` component, `--side-sheet-height` is public while
+  `--ss-dragged-y` is internal: undocumented, free to change, never for
+  consumers to set. The abbreviated prefix keeps internals visibly distinct
+  from the public contract.
+- **Dynamic values cross from script to style as component-local variables**,
+  set via a computed style binding, instead of inline style properties — the
+  stylesheet stays the single place where visual rules live.
 
 ## Separation of concerns
 
 Every pattern above depends on concerns staying cleanly scoped — nothing
 cross-pollutes:
 
-- **One composable per concern.** A drawer plugin’s logic splits into private
+- **One composable per concern.** A drawer module’s logic splits into private
   composables named by what they own: `useDrawerState`, `useDrawerDrag`,
   `useDrawerSnap`, `useDrawerWheel`, `useDrawerProgress`,
   `useDrawerCallback`. Drag logic never computes snap points; snap logic
@@ -96,8 +150,8 @@ cross-pollutes:
 
 ## Bundled options instead of props
 
-Configuration is one `options` object on the outermost component, not a prop
-per setting:
+Module configuration is one `options` object on the outermost component, not
+a prop per setting (standalone components keep ordinary props):
 
 - Nested components read resolved options from the shared state — no prop
   repetition down the tree, cleaner templates.
@@ -106,50 +160,11 @@ per setting:
 - Direct props on nested components remain as targeted escape hatches and win
   over options: `disabled ?? state.options.disabled`.
 
-## Declaring props
+## Related
 
-- Props are a TypeScript `interface` named after the file:
-  `DrawerTrigger.vue` → `interface DrawerTriggerProps`.
-- Destructure in `defineProps`, with defaults set in the destructure (Vue 3.5
-  reactive props destructure):
-  `const { size = 'md' } = defineProps<ExampleProps>()`.
-- **Never use `withDefaults`.** The destructure form replaces it entirely.
-- Exception: when the prop type is an imported library or shared type
-  (`NodeProps` from `@vue-flow/core`, a shared `EdgeProps`), use it directly —
-  don’t rename it to `<Filename>Props`. The naming rule applies to
-  locally-defined interfaces.
-
-## Composable anatomy
-
-Every composable follows the same internal layout:
-
-- Sub-composable dependencies sit at the top, right after the args
-  destructure.
-- Members are grouped under fixed section comments — `// Private state`,
-  `// Public state`, `// Private functions`, `// Public functions` — with
-  groups that don’t apply omitted. These grouping comments are the one
-  sanctioned exception to the minimal-comments rule in `maas-conventions`.
-- Watchers and lifecycle hooks (`onScopeDispose`) come after the functions,
-  before the return.
-- Event listeners use VueUse’s `useEventListener(target, event, handler)` —
-  never raw `addEventListener`/`removeEventListener`. Store the returned stop
-  function to detach; keep `onScopeDispose` only for extra teardown, such as
-  cancelling a pending `requestAnimationFrame`.
-
-## Transitions are named classes
-
-When a component’s transitions need per-caller configuration, the options
-object carries Vue transition **names**, not timing values:
-
-- Options map parts to transition names
-  (`transition: { content: 'my-drawer-content' }`) with defaults matching the
-  component’s built-in class names; consumers override by supplying their own
-  names and defining the `*-enter-active`/`*-leave-active` classes in their
-  own non-scoped `<style>` block.
-- Never pass durations or delays as numbers that become CSS variables. All
-  timing and easing lives in CSS under the named classes — the JS/CSS
-  boundary stays clean and the whole choreography is co-located in one style
-  block.
+Code-level rules for writing the actual SFCs and composables — props
+declarations, composable layout, transitions — live in
+`maas-vue-conventions`.
 
 ## Additional resources
 

@@ -9,11 +9,12 @@
   "skills": [
     "./skills/engineering/maas-conventions",
     "./skills/engineering/maas-docs-style",
-    "./skills/engineering/maas-component-architecture",
     "./skills/engineering/maas-project-scaffolding",
     "./skills/engineering/maas-docs-first",
-    "./skills/engineering/maas-nuxt-architecture",
-    "./skills/engineering/maas-testing",
+    "./skills/vue/maas-component-architecture",
+    "./skills/vue/maas-vue-conventions",
+    "./skills/vue/maas-testing",
+    "./skills/nuxt/maas-nuxt-architecture",
     "./skills/payload/maas-payload",
     "./skills/writing/maas-writing-style"
   ]

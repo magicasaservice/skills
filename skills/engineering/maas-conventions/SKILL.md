@@ -117,7 +117,7 @@ Write as few comments as possible — a comment has to earn its place:
 
 The `// Public state` / `// Public functions` grouping comments in composables
 are the one sanctioned exception to the no-section-comments rule — see the
-`maas-component-architecture` skill.
+`maas-vue-conventions` skill.
 
 ## TypeScript
 

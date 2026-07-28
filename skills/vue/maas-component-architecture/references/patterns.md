@@ -168,3 +168,32 @@ const mappedDisabled = computed(() => disabled ?? state.options.disabled)
 }
 </style>
 ```
+
+## Styling API
+
+Worked on a `side-sheet` component so the naming collapse is visible.
+`--side-sheet-height` is public: full component name, documented, consumed
+with its default as the fallback, free for consumers to override.
+`--ss-dragged-y` is internal: the namespace collapsed to initials,
+undocumented, written by the drag logic. State styles hang off data
+attributes, never toggled classes:
+
+```css
+.side-sheet-content {
+  height: var(--side-sheet-height, 75svh);
+  transform: translateY(var(--ss-dragged-y, 0px));
+}
+
+.side-sheet-content[data-dragging='true'] {
+  transition: none;
+}
+```
+
+Dynamic values cross from script to style as component-local variables
+instead of inline style properties:
+
+```ts
+const dragStyle = computed(() => ({
+  '--ss-dragged-y': `${draggedY.value}px`,
+}))
+```
