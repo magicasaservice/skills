@@ -2,19 +2,19 @@
 name: maas-vue-conventions
 description: >
   This skill should be used when writing or editing Vue single-file
-  components or composables in Magic as a Service™ projects — day-to-day
+  components or composables in Magic as a Service™ projects, day-to-day
   component code. Trigger on requests to "write/edit a component", "add
   props", "set prop defaults", "create a composable", "add an event
   listener", "add a transition", or changes to any .vue file. Covers props
   declarations, composable anatomy, and transition conventions.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Magic as a Service™ Vue Conventions
 
 Code-level rules for writing Vue SFCs and composables. For *designing*
-components and modules — state sharing, APIs, styling contracts — see
+components and modules (state sharing, APIs, styling contracts) see
 `maas-component-architecture`. Example names are illustrative.
 
 ## Declaring props
@@ -26,7 +26,7 @@ components and modules — state sharing, APIs, styling contracts — see
   `const { size = 'md' } = defineProps<ExampleProps>()`.
 - **Never use `withDefaults`.** The destructure form replaces it entirely.
 - Exception: when the prop type is an imported library or shared type
-  (`NodeProps` from `@vue-flow/core`, a shared `EdgeProps`), use it directly —
+  (`NodeProps` from `@vue-flow/core`, a shared `EdgeProps`), use it directly;
   don’t rename it to `<Filename>Props`. The naming rule applies to
   locally-defined interfaces.
 
@@ -36,13 +36,13 @@ Every composable follows the same internal layout:
 
 - Sub-composable dependencies sit at the top, right after the args
   destructure.
-- Members are grouped under fixed section comments — `// Private state`,
-  `// Public state`, `// Private functions`, `// Public functions` — with
+- Members are grouped under fixed section comments (`// Private state`,
+  `// Public state`, `// Private functions`, `// Public functions`), with
   groups that don’t apply omitted. These grouping comments are the one
   sanctioned exception to the minimal-comments rule in `maas-conventions`.
 - Watchers and lifecycle hooks (`onScopeDispose`) come after the functions,
   before the return.
-- Event listeners use VueUse’s `useEventListener(target, event, handler)` —
+- Event listeners use VueUse’s `useEventListener(target, event, handler)`,
   never raw `addEventListener`/`removeEventListener`. Store the returned stop
   function to detach; keep `onScopeDispose` only for extra teardown, such as
   cancelling a pending `requestAnimationFrame`.
@@ -60,6 +60,6 @@ object carries Vue transition **names**, not timing values:
   names and defining the `*-enter-active`/`*-leave-active` classes in their
   own non-scoped `<style>` block.
 - Never pass durations or delays as numbers that become CSS variables. All
-  timing and easing lives in CSS under the named classes — the JS/CSS
+  timing and easing lives in CSS under the named classes; the JS/CSS
   boundary stays clean and the whole choreography is co-located in one style
   block.

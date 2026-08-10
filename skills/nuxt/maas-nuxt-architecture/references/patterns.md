@@ -1,11 +1,11 @@
-# Patterns — worked example
+# Patterns: worked example
 
 Names below (`OmniBar`, `ChatDock`, `app-base`) are illustrative; the shapes
 are the convention.
 
 ## Feature module registration
 
-The module’s `index.ts` — the whole public surface is declared here:
+The module’s `index.ts` declares the whole public surface:
 
 ```ts
 export default defineNuxtModule({
@@ -97,11 +97,11 @@ onClickOutside(container, callback, {
 
 ## Supporting utilities worth reusing
 
-- `createContext<T>('ProviderName')` — Radix-style tuple
+- `createContext<T>('ProviderName')`: Radix-style tuple
   `[injectX, provideX]` that throws a formatted error naming the required
   provider.
-- `nextFrame()` — promisified `requestAnimationFrame` for sequencing
+- `nextFrame()`: promisified `requestAnimationFrame` for sequencing
   layout-dependent work.
 - Chrome bounds via `useState` keys: measuring components publish
-  (`useElementBounding` + `watchEffect`), content reads — no refs passed
+  (`useElementBounding` + `watchEffect`), content reads. No refs passed
   around.

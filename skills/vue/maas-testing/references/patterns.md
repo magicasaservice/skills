@@ -1,4 +1,4 @@
-# Testing patterns — worked example
+# Testing patterns: worked example
 
 A drawer plugin illustrates the patterns; names are illustrative.
 
@@ -33,7 +33,7 @@ export default defineConfig({
 
 ## Test-ID enums
 
-`tests/enums.ts` — one instance ID per test case, grouped by concern, plus
+`tests/enums.ts` holds one instance ID per test case, grouped by concern, plus
 reusable element roles:
 
 ```ts

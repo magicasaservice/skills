@@ -44,7 +44,7 @@ function tagsFor(post: Post): string[] {
 }
 ```
 
-## Descriptive type names — no single letters
+## Descriptive type names, no single letters
 
 Give every type and every generic parameter a name that says what it is. Never
 use bare single letters like `T`, `K`, or `U`.
@@ -93,12 +93,12 @@ function createOrder({ customer, items, discount }: CreateOrderPayload) {
 
 createOrder({ customer, items, discount })
 
-// Fine — a single value
+// Fine: a single value
 function formatPrice(cents: number): string {
   return `${(cents / 100).toFixed(2)} €`
 }
 
-// Avoid — positional arguments the call site cannot name
+// Avoid: positional arguments the call site cannot name
 function createOrder(customer: Customer, items: Array<OrderItem>, discount?: Discount) {}
 createOrder(customer, items, undefined)
 ```
@@ -143,7 +143,7 @@ An assertion tells the compiler to stop checking; honest narrowing keeps the
 check and catches real bugs.
 
 ```ts
-// Preferred — narrowing the compiler can verify
+// Preferred: narrowing the compiler can verify
 if (target instanceof HTMLElement) {
   target.focus()
 }
@@ -156,7 +156,7 @@ function isDefined<ValueType>(
 
 const ids = maybeIds.filter(isDefined)
 
-// Avoid — assertions that silence the compiler
+// Avoid: assertions that silence the compiler
 const target = event.target as HTMLElement
 const ids = maybeIds.filter(Boolean) as Array<string>
 ```
@@ -165,5 +165,5 @@ Allowed exceptions:
 
 - `as const`
 - `Symbol() as InjectionKey<ValueType>`
-- Genuinely unavoidable library-typing workarounds — treat each as a defect
+- Genuinely unavoidable library-typing workarounds; treat each as a defect
   in the boundary, not a license to assert elsewhere.

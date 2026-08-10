@@ -1,4 +1,4 @@
-# Blocks and transformers — worked example
+# Blocks and transformers: worked example
 
 Section and field names are illustrative; the shapes are the convention.
 
@@ -32,8 +32,9 @@ export { xxxSection, xxxSectionTransformer, type XXXSection }
 
 ## A worked section
 
-`src/sections/teasers/teaserGrid.ts` — fields from the shared library, text
-passed through the house text utilities, presentation split into `layout`:
+`src/sections/teasers/teaserGrid.ts` composes fields from the shared library,
+passes text through the house text utilities, and splits presentation into
+`layout`:
 
 ```ts
 import { itemsField } from '@/fields/item'
@@ -80,12 +81,12 @@ export { teaserGridSection, teaserGridSectionTransformer, type TeaserGridSection
 
 A new section is wired in three places:
 
-1. **Block list** — add it to the curated arrays in `src/fields/sections.ts`
+1. **Block list**: add it to the curated arrays in `src/fields/sections.ts`
    (full / singles / typeface lists reuse the same section blocks).
-2. **Dispatch** — add a case to
+2. **Dispatch**: add a case to
    `src/transformers/fields/sectionTransformer.ts`, the single `switch`
    mapping every `blockType` slug to its transformer.
-3. **Frontend component** — create the matching
+3. **Frontend component**: create the matching
    `<PascalCase>Section.vue`; the renderer resolves it by convention:
 
 ```ts
@@ -131,6 +132,6 @@ const { afterChange, afterDelete } = createCacheHooks('pages')
 hooks: { afterChange: [afterChange], afterDelete: [afterDelete] }
 ```
 
-The factory is draft-aware — it only revalidates when the published version
+The factory is draft-aware; it only revalidates when the published version
 is affected. Published reads go through `createCachedQuery(fn, keyParts,
 tags)` so tags line up with the hooks.

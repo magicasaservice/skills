@@ -2,46 +2,58 @@
 name: maas-docs-first
 description: >
   This skill should be used whenever working with a library, framework,
-  plugin, module, or tool in a Magic as a Service™ project — before installing
+  plugin, module, or tool in a Magic as a Service™ project: before installing
   a dependency, using an unfamiliar API, configuring a plugin, or writing
   integration code. Trigger on requests to "install", "add", "integrate",
   "configure", or "use" any third-party or internal technology. Requires
-  reading the technology’s documentation before using it.
+  reading the technology’s documentation before using it, and fixing internal
+  docs the code contradicts.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Magic as a Service™ Docs First
 
 Never use a technology from memory alone. Training data goes stale; APIs
 change between versions. Before writing code against any library, plugin,
-framework, or tool — third-party or internal — read its current
+framework, or tool, third-party or internal, read its current
 documentation.
 
 ## The rule
 
 1. **Find the version actually in use.** Check `package.json` and the
-   lockfile — then read the docs for that version, not the latest.
+   lockfile, then read the docs for that version, not the latest.
 2. **Read before writing.** Locate documentation in this order:
    - LLM-specific docs: `llms.txt` / `llms-full.txt` at the project’s docs
      domain (e.g. `https://example.com/llms.txt`), or docs pages the project
      provides specifically for agents.
-   - The official documentation site.
+   - The official documentation site; for internal technology, that includes
+     the project’s own docs app.
    - The package README and repository.
    - As a last resort, the installed source and type definitions in
-     `node_modules` — types don’t lie about the current API.
+     `node_modules`; types don’t lie about the current API. For
+     monorepo-internal packages without docs, read their source and types
+     directly, then create the missing docs page per `maas-docs-style`.
 3. **If no documentation can be found, stop and ask.** Ask the user to point
    to the docs instead of guessing from memory. A wrong guess against an
    undocumented API costs more than the question.
 
+## Internal docs go both ways
+
+A project’s own docs are documentation to read, and a contract to maintain.
+When the source contradicts an internal docs page, the docs are wrong by
+definition; fixing that page is part of the task at hand, not a separate
+chore. The same applies in reverse: after changing a documented internal
+surface, update its page in the same session.
+
 ## What this applies to
 
 - Adding or updating any dependency.
-- Using a plugin or module for the first time in a session — including
+- Using a plugin or module for the first time in a session, including
   internal ones (`@maas/config`, shared component libraries, Payload
   plugins).
 - Configuring tools (Nuxt modules, Vite/Turborepo config, CI).
 - Any API the agent has not verified against docs in the current session.
 
-Reading the docs once per technology per session is enough — the point is
+Reading the docs once per technology per session is enough; the point is
 verification before first use, not re-reading before every call.

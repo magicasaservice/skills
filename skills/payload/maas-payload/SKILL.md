@@ -2,7 +2,7 @@
 name: maas-payload
 description: >
   This skill should be used when working on a Magic as a Service™ Payload CMS
-  backend or a frontend consuming it — creating collections, blocks, sections,
+  backend or a frontend consuming it: creating collections, blocks, sections,
   fields, transformers, endpoints, or hooks, or fetching CMS content from a
   Nuxt app. Trigger on requests to "add a collection/block/section/field",
   "expose content to the frontend", "add an endpoint", or any work in a
@@ -10,7 +10,7 @@ description: >
   Covers the block+transformer contract, field factories, and the typed
   backend-to-frontend bridge.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Magic as a Service™ Payload
@@ -22,16 +22,16 @@ illustrative.
 
 ## Blocks and sections: the three-export contract
 
-Every section/block lives in one file exporting exactly three things — the
-block config, its transformer, and the transformer’s return type:
+Every section/block lives in one file exporting exactly three things: the
+block config, its transformer, and the transformer’s return type.
 
 - The block config sets `interfaceName` (drives the generated type name) and
-  composes fields from the shared field library — no inline field
+  composes fields from the shared field library, with no inline field
   definitions.
 - The transformer takes the generated schema type and returns
-  `{ id, blockType, data, layout }` — content in `data`, presentation
+  `{ id, blockType, data, layout }`: content in `data`, presentation
   concerns in `layout`, every value null-coalesced to a safe default.
-- The return type is always `ReturnType<typeof xxxTransformer>` — never
+- The return type is always `ReturnType<typeof xxxTransformer>`, never
   hand-written.
 
 Start new sections from `src/sections/_template.ts`. Register the block in
@@ -44,11 +44,11 @@ Full example: `references/blocks.md`.
 Fields are shared, one per file, under `src/fields/`:
 
 - **Named variants over parameters**: `containerField`,
-  `minimalContainerField`, `proseContainerField` — not one field with
+  `minimalContainerField`, `proseContainerField`, not one field with
   options. Call-site tweaks use spread-override:
   `{ ...nameField, required: true }`.
 - Factory functions (with `deepmerge` over a defaults object) only when a
-  field genuinely needs arguments — `slugField('title')`.
+  field genuinely needs arguments: `slugField('title')`.
 - Composites: `src/groups/` bundles related fields
   (`mediaGroup` = square/landscape/portrait uploads); `src/tabs/` ships whole
   admin tabs (`seoTab`, `previewTab`) dropped into collections wholesale.
@@ -70,7 +70,7 @@ Fields are shared, one per file, under `src/fields/`:
 
 - The backend package exports a pure type barrel (`src/index.ts`,
   `export type *` of all transformer return types). Frontends
-  `import type { PageTransformerReturn } from 'cms-backend'` — end-to-end
+  `import type { PageTransformerReturn } from 'cms-backend'`: end-to-end
   types with no SDK and no extra codegen.
 - Content is served by hand-written custom endpoints returning transformer
   output, uniform across collections:
@@ -83,8 +83,8 @@ Fields are shared, one per file, under `src/fields/`:
 
 ## Rendering on the Nuxt side
 
-Sections resolve to components by convention —
-`resolveComponent(pascalCase(section.blockType) + 'Section')` — and every
+Sections resolve to components by convention
+(`resolveComponent(pascalCase(section.blockType) + 'Section')`), and every
 section component accepts exactly two props: `data` and `layout`. Vertical
 rhythm between sections is decided centrally in the area renderer, never per
 component.
@@ -93,7 +93,7 @@ component.
 
 - Richtext ships as a transformed block array (via converter pipeline), not
   raw Lexical JSON; two editor configs exist (`editorConfig`,
-  `reducedEditorConfig`) — pick the reduced one for constrained fields.
+  `reducedEditorConfig`); pick the reduced one for constrained fields.
 - Media behavior (S3, Mux, uploads) comes from
   `@maas/payload-plugin-media-cloud`; the media collection itself stays
   minimal.
@@ -102,5 +102,5 @@ component.
 
 ## Additional resources
 
-- `references/blocks.md` — the template, a real section, and the dispatch
+- `references/blocks.md`: the template, a real section, and the dispatch
   pattern with real code

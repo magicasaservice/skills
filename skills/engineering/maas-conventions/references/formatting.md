@@ -1,7 +1,7 @@
-# Formatting & Linting — Prettier & ESLint
+# Formatting & Linting: Prettier & ESLint
 
 All Magic as a Service™ projects get their Prettier and ESLint configuration from
-`@maas/config`. Never hand-write Prettier options or ESLint rules in a repo —
+`@maas/config`. Never hand-write Prettier options or ESLint rules in a repo;
 pull in a preset, and extend it only when the project genuinely needs it.
 
 ## Prettier setup
@@ -29,8 +29,8 @@ export default prettierPlainPreset
 ## ESLint setup
 
 ESLint presets also live in `@maas/config`. Reference them in an
-`eslint.config.mjs` at the repo root — or, in a monorepo, one per
-application/package.
+`eslint.config.mjs` at the repo root, or one per application/package
+in a monorepo.
 
 Pick the preset that matches the project:
 

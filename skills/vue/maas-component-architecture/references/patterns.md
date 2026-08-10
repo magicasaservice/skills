@@ -1,4 +1,4 @@
-# Patterns — worked example
+# Patterns: worked example
 
 A drawer plugin illustrates every pattern; the names are illustrative, the
 shapes are the convention.
@@ -84,7 +84,7 @@ export function useDrawerState(id: MaybeRef<string>) {
 }
 ```
 
-Note the deliberate merge override — arrays replace instead of merging:
+Note the deliberate merge override, where arrays replace instead of merging:
 
 ```ts
 const customDefu = createDefu((obj, key, value) => {
@@ -120,7 +120,7 @@ emitter.emit('progress', { id: toValue(id), x, y })
 
 ## Inversion of control in a component
 
-Everything in one place — ID from injection *or* prop, polymorphic rendering,
+Everything in one place: ID from injection *or* prop, polymorphic rendering,
 state as slot props and data attributes, loud contract failure, prop as escape
 hatch over options:
 

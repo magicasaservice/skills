@@ -1,14 +1,14 @@
 ---
 name: maas-writing-style
 description: >
-  This skill should be used when writing prose for Magic as a Service™ — blog
+  This skill should be used when writing prose for Magic as a Service™: blog
   posts, articles, announcements, case studies, release notes, or the prose
   parts of documentation. Trigger on requests to "write a post", "draft an
   article", "announce", "write about", or to edit any long-form text for a
   maas project. Covers tone of voice, narrative structure, and the stylistic
   devices that make the writing recognisable.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Magic as a Service™ Writing Style
@@ -36,7 +36,7 @@ are invented).
   variables and names and call it a day"). Never more than a few per post;
   never in the technical core.
 - **Credit people by name.** Community members, teammates, and inspirations
-  are named and thanked, usually in the closing — a specific person and what
+  are named and thanked, usually in the closing: a specific person and what
   they actually did, not a generic shout-out.
 - **Be honest about detours.** Failed first attempts and later corrections
   stay in the story, even when they undercut it: "we later realised it was
@@ -59,29 +59,32 @@ are invented).
 - **Length follows depth, not the other way around.** The default post is a
   3-minute read; an in-depth piece can run much longer when the subject earns
   it. The discipline stays identical at any length: paragraphs of 1–4
-  sentences, one idea per paragraph, the same narrative arc — a long post is
+  sentences, one idea per paragraph, the same narrative arc. A long post is
   more story beats, not longer ones. Cut anything that doesn’t move the story
   or teach the mechanism.
 - **Explain cause before rule.** When something must be done a certain way,
-  explain the mechanism first, then the consequence — the SSR section pattern:
+  explain the mechanism first, then the consequence. The SSR section pattern:
   what happens on the server, therefore what leaks, therefore the fix.
 - **Cite, don’t paraphrase.** Quote documentation and sources verbatim with
   quotation marks and attribution.
 - **Close looking forward or giving thanks.** End with what’s next, an
-  acknowledgment, or both — never with a summary of what was just said.
+  acknowledgment, or both, never with a summary of what was just said.
 
 ## Mechanics
 
 - Rhetorical questions as pivots, used once per post at most: "So what is it?"
-- Asides between en or em dashes: "we hit a road block – no straightforward
-  way to install Vue plugins within a Nuxt module seemed to exist, which left
-  us pondering."
-- **Always use the typographic apostrophe (’)** — never the typewriter
-  apostrophe (') — in prose, headings, and quotes: "it’s", "we’ve", "Vue’s".
+- Asides between en or em dashes, used sparingly (see the em-dash budget
+  under No AI-speak): "we hit a road block – no straightforward way to
+  install Vue plugins within a Nuxt module seemed to exist, which left us
+  pondering."
+- **Always use the typographic apostrophe (’)**, never the typewriter
+  apostrophe ('), in prose, headings, and quotes: "it’s", "we’ve", "Vue’s".
   The same goes for quotation marks (“ ”). Straight quotes belong in code
   only.
 - British-leaning spellings ("realised", "favouring"), semicolon-separated
-  lists for enumerations of features.
+  lists for enumerations of features. The British lean applies to maas’s own
+  prose; a project that defines its own spelling in its CLAUDE.md naming
+  canon wins for that project’s writing and docs.
 - Introduce every code block with a sentence saying what it shows; the code
   never appears unannounced.
 
@@ -96,9 +99,11 @@ None of the following appear in maas writing:
 - **Fragment-question drama.** "The problem? State. The solution? Composables."
   "The result? Fewer bugs." Write full sentences; the one allowed rhetorical
   question per post is a transition, not a tic.
-- **Em-dash overuse.** One dash-set aside per paragraph at most. If a
-  paragraph has two, rewrite one as a sentence or a comma clause. Never use a
-  dash where a comma would do.
+- **Em-dash overuse.** The em dash is a last resort, not a default rhythm.
+  Most paragraphs contain none, and a whole post earns only a small handful.
+  Before typing one, try a comma, a colon, parentheses, or two sentences;
+  one of those almost always works. Never more than one dash aside per
+  paragraph, and never a dash where a comma would do.
 - **Hype vocabulary.** seamless, robust, powerful, comprehensive, effortless,
   game-changing, supercharge, elevate, unlock, empower, leverage (as a verb),
   delve, dive in/deep dive, unpack, landscape, ecosystem-as-filler,
@@ -110,7 +115,7 @@ None of the following appear in maas writing:
 - **Summary endings.** "In summary, we’ve seen how…" The reader just read the
   post. Close forward-looking or with thanks (see Structure).
 - **Bold-led bullet walls.** Long runs of "**Label.** Explanation" bullets are
-  a document pattern, not an article pattern — posts are written in flowing
+  a document pattern, not an article pattern; posts are written in flowing
   paragraphs. (Skills like this one are documents; posts are not.)
 - **Symmetric sentence pairs.** "Where X offers speed, Y offers safety."
   Balanced-clause constructions read as generated; vary sentence shapes.
@@ -121,9 +126,11 @@ product page, rewrite it the way you’d explain it to a colleague.
 ## Related
 
 For the reference-documentation page skeleton (API tables, installation tabs,
-anatomy sections), `maas-docs-style` applies on top of this voice.
+anatomy sections), `maas-docs-style` applies on top of this voice. The
+No AI-speak list above is the single source of truth for both skills;
+`maas-docs-style` applies the same bans to reference prose.
 
 ## Additional resources
 
-- `references/voice-examples.md` — verbatim excerpts from the reference
+- `references/voice-examples.md`: verbatim excerpts from the reference
   posts, organized by device
