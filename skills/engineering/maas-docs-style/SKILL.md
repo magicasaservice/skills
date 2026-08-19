@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -31,7 +31,7 @@ example-first. Example names below are illustrative.
   the drawer to differentiate when the user scrolls and when the user drags,
   any scrollable containers need their overflow value explicitly set."
 - **No AI-speak in reference prose.** The bans from `maas-writing-style`
-  apply to documentation too: no contrastive negation ("it's not X — it's
+  apply to documentation too: no contrastive negation ("it’s not X — it’s
   Y"; say what the thing is), no hype vocabulary, no throat-clearing, no
   exclamation marks.
 - **Personality lives at the edges.** Emoji headings, taglines, and playful
@@ -42,10 +42,12 @@ example-first. Example names below are illustrative.
   quotation marks. Straight quotes belong in code only, and that includes
   inline code spans showing literal API values: `'inner'` keeps its straight
   ASCII quotes even mid-sentence.
-- **Em dashes are rare.** Reference prose defaults to commas, colons, and
-  short sentences; most paragraphs contain no em dash at all. Never more
-  than one dash aside per paragraph, and never a dash where a comma would
-  do.
+- **Dashes are a last resort, and the em dash is not one at all.** The em
+  dash (—) never appears in documentation prose. The en dash (–) is allowed
+  only where an aside genuinely cannot be a comma, a colon, or a second
+  sentence: at most one per paragraph, and most pages carry none.
+  Documentation runs on commas, colons, and short sentences. Grep the file
+  for — and – before calling docs work finished.
 - **Follow the project’s naming canon and spelling.** Each project defines
   its product-name spellings (and US or British English) in its CLAUDE.md;
   apply them exactly, and grep for banned variants before finishing docs

@@ -8,7 +8,7 @@ description: >
   Covers Prettier formatting, ESLint setup, TypeScript conventions, comment
   style, and Git commit rules.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Magic as a Service™ Conventions
@@ -109,8 +109,10 @@ Write as few comments as possible; a comment has to earn its place:
   self-explanatory name over a comment; never write header or section
   comments that restate what the code obviously does.
 - Keep the survivors short: one fact, ideally one line.
-- No em dashes in comments. A comment that wants a dash aside is carrying
-  two facts; keep the one that matters, or use a comma or colon.
+- No em dashes (—) in comments, or anywhere else: commit messages, PR
+  descriptions, and issue text follow the same ban, and en dashes (–) stay
+  just as rare. A comment that wants a dash aside is carrying two facts;
+  keep the one that matters, or use a comma or colon.
 - **Never comment CSS**: no `/* … */` in `.css`/`.scss` files or `<style>`
   blocks. If a rule needs justification, it belongs in the commit message.
 - In comment **prose**, use typographic apostrophes for contractions and

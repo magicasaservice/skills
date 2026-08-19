@@ -24,4 +24,4 @@ imperative bullets over prose.
 Move anything long (full configs, extended examples, rationale) into
 `references/` and link it so it is only loaded when needed:
 
-- `references/example.md` — what the reader finds there and when to open it
+- `references/example.md`: what the reader finds there and when to open it

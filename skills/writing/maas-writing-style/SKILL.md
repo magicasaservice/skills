@@ -8,7 +8,7 @@ description: >
   maas project. Covers tone of voice, narrative structure, and the stylistic
   devices that make the writing recognisable.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Magic as a Service™ Writing Style
@@ -73,10 +73,10 @@ are invented).
 ## Mechanics
 
 - Rhetorical questions as pivots, used once per post at most: "So what is it?"
-- Asides between en or em dashes, used sparingly (see the em-dash budget
+- Asides between en dashes (–), rare enough to notice (see the dash rule
   under No AI-speak): "we hit a road block – no straightforward way to
   install Vue plugins within a Nuxt module seemed to exist, which left us
-  pondering."
+  pondering." The em dash (—) is never used, in any position.
 - **Always use the typographic apostrophe (’)**, never the typewriter
   apostrophe ('), in prose, headings, and quotes: "it’s", "we’ve", "Vue’s".
   The same goes for quotation marks (“ ”). Straight quotes belong in code
@@ -99,11 +99,15 @@ None of the following appear in maas writing:
 - **Fragment-question drama.** "The problem? State. The solution? Composables."
   "The result? Fewer bugs." Write full sentences; the one allowed rhetorical
   question per post is a transition, not a tic.
-- **Em-dash overuse.** The em dash is a last resort, not a default rhythm.
-  Most paragraphs contain none, and a whole post earns only a small handful.
-  Before typing one, try a comma, a colon, parentheses, or two sentences;
-  one of those almost always works. Never more than one dash aside per
-  paragraph, and never a dash where a comma would do.
+- **Dashes.** The em dash (—) never appears in maas prose, in any position.
+  That one is a ban, not a budget: not "rare", not "a last resort", not
+  "sparingly". The en dash (–) is the only dash aside the voice allows, and
+  it lives on the same short leash: most paragraphs contain none, a whole
+  post earns a small handful, never more than one per paragraph, never one
+  where a comma would do. Reach for a comma, a colon, parentheses, or two
+  sentences first; one of those almost always works. Before calling any
+  prose finished, grep the file for — and –, and rewrite every hit that
+  cannot justify itself.
 - **Hype vocabulary.** seamless, robust, powerful, comprehensive, effortless,
   game-changing, supercharge, elevate, unlock, empower, leverage (as a verb),
   delve, dive in/deep dive, unpack, landscape, ecosystem-as-filler,
