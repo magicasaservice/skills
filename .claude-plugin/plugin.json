@@ -1,6 +1,6 @@
 {
   "name": "engineering-standards",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TypeScript conventions, Prettier formatting, and Git commit rules",
   "author": {
     "name": "Robin Vey",

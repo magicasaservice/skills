@@ -8,7 +8,7 @@ description: >
   maas project. Covers tone of voice, narrative structure, and the stylistic
   devices that make the writing recognisable.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Magic as a Service™ Writing Style
@@ -20,6 +20,8 @@ are invented).
 
 ## Voice
 
+- **Sentence shape.** 18 to 30 words with one subordinate clause is the
+  norm; a run of short declaratives is the exception, not the rhythm.
 - **"We" by default.** The team speaks as a group. Switch to "I" only for
   personal moments (thanks, opinions clearly held by one author).
 - **Understate everything.** Claims are deliberately modest: "pretty solid",
@@ -138,3 +140,5 @@ No AI-speak list above is the single source of truth for both skills;
 
 - `references/voice-examples.md`: verbatim excerpts from the reference
   posts, organized by device
+- `references/reference-posts.md`: three complete posts, verbatim. Read one
+  before writing long-form prose; the cadence transfers from a sample

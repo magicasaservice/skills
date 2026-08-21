@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -27,6 +27,13 @@ example-first. Example names below are illustrative.
 - **One idea per sentence.** Paragraphs are 1–3 sentences, then a code block.
   If a paragraph needs a fourth sentence, it is probably two paragraphs or a
   list.
+- **Relaxed, not clipped.** A sentence with one subordinate clause is the
+  norm ("If you are using Vue, import and add the plugin to your app.");
+  three short declaratives in a row read as generated. Branch with "If you
+  …" conditionals rather than commands.
+- **A prose budget.** A component or plugin page carries about ten sentences
+  of prose outside code and tables; a section is one or two sentences, then
+  the block. Cut before you rephrase.
 - **Cause-first caveats.** Explain the mechanism, then the rule: "In order for
   the drawer to differentiate when the user scrolls and when the user drags,
   any scrollable containers need their overflow value explicitly set."
@@ -36,7 +43,9 @@ example-first. Example names below are illustrative.
   exclamation marks.
 - **Personality lives at the edges.** Emoji headings, taglines, and playful
   copy belong in the README and marketing pages only. Reference documentation
-  is completely dry: no emoji, no jokes, no exclamation marks.
+  is dry in content, not in tone: no emoji, no jokes, no exclamation marks,
+  but still a person explaining something to a colleague. See
+  `references/docs-voice.md` for verbatim samples and before/after pairs.
 - Use real typography: always the typographic apostrophe (’) in prose, never
   the typewriter apostrophe ('). Write "it’s", not "it's", and use curly
   quotation marks. Straight quotes belong in code only, and that includes
@@ -101,3 +110,5 @@ Docs pages carry frontmatter, and rot starts there. The contract:
 
 - `references/page-structure.md`: the canonical page skeletons per page
   type, with verbatim voice examples
+- `references/docs-voice.md`: the docs register, verbatim samples, generated
+  vs house before/after pairs, and the tells that survive the bans
