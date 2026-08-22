@@ -62,6 +62,10 @@ Pairs from a real docs pass. The left column is what a model writes when told to
 
 These passed the `maas-writing-style` list and still read as generated:
 
+- Teaser headings and value promises. "What breaks quietly", "These are the
+  ones worth budgeting time for", "This is where it gets interesting". A
+  heading names the thing ("Removed, without an error"); a section starts
+  with its content, never with a sentence about how useful the section is.
 - Aphorism closers. A short, quotable sentence ending a paragraph ("The input is the typeahead.") once is fine; one per paragraph is a tic.
 - Three clipped declaratives in a row. Join two with a subordinate clause.
 - The definitional opener repeated on every page ("X is a Y that Z."). Say what it is and when to use it, then move on.

@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
 ---
 
 # Magic as a Service™ Documentation Style
