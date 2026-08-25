@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.3.1"
+  version: "1.4.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -41,6 +41,15 @@ example-first. Example names below are illustrative.
   apply to documentation too: no contrastive negation ("it’s not X — it’s
   Y"; say what the thing is), no hype vocabulary, no throat-clearing, no
   exclamation marks.
+- **Four tells that read as generated.** The colon-triad ("X: the A, the B,
+  and the C": a headline noun phrase followed by exactly three parallel
+  clauses); the verbless self-description (a fragment describing the page's
+  own contents instead of telling the reader what to do, often opening with
+  "The full" or "A complete"); decorative verbs that commit to nothing
+  ("carry", "reshape", "surface", "land": name the real action instead); and
+  tuned rhythm over information (clauses of near-identical length whose
+  content stays fuzzy). The test is actionability: if the reader cannot act
+  on a clause, make it concrete or delete it.
 - **Personality lives at the edges.** Emoji headings, taglines, and playful
   copy belong in the README and marketing pages only. Reference documentation
   is dry in content, not in tone: no emoji, no jokes, no exclamation marks,
