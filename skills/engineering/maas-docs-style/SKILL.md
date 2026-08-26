@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.9.0"
+  version: "1.10.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -64,6 +64,13 @@ example-first. Example names below are illustrative.
   asides ("which is the point"), and personified components ("the chip
   publishes no opinion"). State the mechanism and the instruction and stop;
   documentation explains, it does not perform wisdom at the reader.
+- **Every page stands alone.** Never lean on what the reader supposedly
+  knows from other pages or components: "takes the same options every other
+  floating component does" tells a reader who landed here first nothing.
+  State the facts in place, even when another page documents the same shape,
+  and point at this page’s own tables rather than at another component. A
+  comparison may add context ("like every other part") only after the fact
+  itself is stated; it never substitutes for it.
 - **Name no other libraries.** Public documentation never names other
   component libraries, design systems or influences (Material, Base UI,
   Radix and the like), neither as credit nor as comparison. State the
