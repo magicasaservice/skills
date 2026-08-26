@@ -32,6 +32,18 @@ One-line pitch: what it is + when you’d use it.
 ## Examples                (one heading per demo, each with a live demo)
 ```
 
+## One owner per fact
+
+Every fact has exactly one home on the page. Prose sections (usage
+guidelines, examples, accessibility) own behaviour, reasoning and the
+interactions between features. The API reference owns signatures: names,
+types and defaults, with descriptions at label length, one short clause,
+two at most. A row with more to say links to the section that says it
+rather than retelling it. Frontmatter-driven tables (data attributes, CSS
+variables) are the only home for their facts and keep their content. The
+per-part reference layout itself (one section per part, its own Props,
+Options, Emits and Slot Props tables) always stays.
+
 ## Module page
 
 For a self-contained feature module (a provider–composable pair with its own
