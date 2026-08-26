@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.4.0"
+  version: "1.5.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -50,6 +50,12 @@ example-first. Example names below are illustrative.
   tuned rhythm over information (clauses of near-identical length whose
   content stays fuzzy). The test is actionability: if the reader cannot act
   on a clause, make it concrete or delete it.
+- **No lectern.** A fifth tell is the know-it-all register: aphorisms and
+  maxims ("a list wants a ScrollArea"), absolutes ("can never disagree"),
+  metaphors repeated until they become the argument, self-congratulating
+  asides ("which is the point"), and personified components ("the chip
+  publishes no opinion"). State the mechanism and the instruction and stop;
+  documentation explains, it does not perform wisdom at the reader.
 - **Personality lives at the edges.** Emoji headings, taglines, and playful
   copy belong in the README and marketing pages only. Reference documentation
   is dry in content, not in tone: no emoji, no jokes, no exclamation marks,
