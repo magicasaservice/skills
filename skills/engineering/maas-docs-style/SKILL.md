@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.7.0"
+  version: "1.8.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -62,6 +62,11 @@ example-first. Example names below are illustrative.
   behaviour and its reason on its own. A token or utility family that
   happens to share a word (a `material-*` glass family) is not a library
   name. Internal design records are exempt; they reference their targets.
+- **Demo code carries no comments.** Example fences and their paired
+  preview components are clean code: no comments in the template or the
+  script. A constraint the reader genuinely needs (a portal switched off so
+  the demo stays in its frame) becomes one plain sentence in the page prose
+  next to the demo, and only when no section owns it already.
 - **Personality lives at the edges.** Emoji headings, taglines, and playful
   copy belong in the README and marketing pages only. Reference documentation
   is dry in content, not in tone: no emoji, no jokes, no exclamation marks,
