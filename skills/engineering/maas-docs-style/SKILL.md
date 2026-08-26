@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.8.0"
+  version: "1.9.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -34,6 +34,14 @@ example-first. Example names below are illustrative.
 - **A prose budget.** A component or plugin page carries about ten sentences
   of prose outside code and tables; a section is one or two sentences, then
   the block. Cut before you rephrase.
+- **Instructions are exact, not easy-going.** An instructional paragraph
+  names the command or option verbatim, says what it does mechanically, and
+  states the observable result. Mood phrases ("suits a first look", "once
+  you are painting your own colours") and vague gestures ("the tree comes
+  into the project") are cut: write "run `mirror init --tokens`: it copies
+  the token tree into `./tokens` and rewrites `source` in `mirror.config.ts`
+  to read from that directory." See `references/docs-voice.md` for the full
+  before/after pair.
 - **Cause-first caveats.** Explain the mechanism, then the rule: "In order for
   the drawer to differentiate when the user scrolls and when the user drags,
   any scrollable containers need their overflow value explicitly set."

@@ -58,6 +58,21 @@ Pairs from a real docs pass. The left column is what a model writes when told to
 | The shape is settled. Parts, namespaces, the `data-*` contract, the slot props and the public CSS variables are the contract v2 commits to. | We consider the overall shape settled: the parts, the namespaces, the data attributes and the slot props won’t change before the stable release. Option names and CSS variables might still move a little, and we will list every change in the release notes. |
 | Reach for the intent groups instead. For a genuine one-off, an arbitrary value is the honest escape hatch. | If you need a colour that isn’t in the palette, use one of the intent groups first; they are the ones a theme can move. For a real one-off, an arbitrary value is fine. |
 
+## The instructional register
+
+Instructional prose is where easy-going writing costs the most: the reader is
+mid-task and needs the command, what it does, and what they will see. One
+pair, from a real correction:
+
+| Easy-going | Exact |
+| --- | --- |
+| The config above reads our tokens over the network on every build, which suits a first look at Mirror. Once you are painting your own colours, pass `--tokens` and the tree comes into the project instead. | The config above downloads the token repository on every build. To edit the tokens, run `mirror init --tokens`: it copies the token tree into `./tokens` and rewrites `source` in `mirror.config.ts` to read from that directory. |
+
+The test: after reading the paragraph, the reader knows the exact command to
+type, what it changes on disk, and how the next run behaves. Mood ("suits a
+first look") and gesture ("comes into the project") fail that test; a named
+file and a named key pass it.
+
 ## Tells that survive the bans
 
 These passed the `maas-writing-style` list and still read as generated:
