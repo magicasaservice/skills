@@ -9,7 +9,7 @@ description: >
   package.json". Covers the turborepo-starter template and package.json
   conventions.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Magic as a Service™ Project Scaffolding
@@ -38,7 +38,11 @@ reviewed in a maas repo:
 - **`"private": true`** unless the package is actually published to npm.
 - **`contributors`**, not `author`: an array of `{ "name", "url" }` entries
   pointing at GitHub profiles.
-- **ESM only**: `"type": "module"` in publishable packages.
+- **ESM only**: `"type": "module"` in publishable packages, and built files
+  ship as `.mjs`, never `.js`. For a shipped `.js` file, Node.js must find,
+  read, and parse the nearest package.json at runtime to determine its
+  module format; `.mjs` carries the format in the extension and skips that
+  cost entirely.
 - **Scripts delegate to Turborepo**: root `build`, `dev`, and `lint` are
   `turbo run <task>`; per-package behavior lives in the packages, never in
   root scripts.
