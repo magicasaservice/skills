@@ -6,9 +6,10 @@ description: >
   component code. Trigger on requests to "write/edit a component", "add
   props", "set prop defaults", "create a composable", "add an event
   listener", "add a transition", or changes to any .vue file. Covers props
-  declarations, composable anatomy, and transition conventions.
+  declarations, reactive state, composable anatomy, and transition
+  conventions.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Magic as a Service™ Vue Conventions
@@ -29,6 +30,20 @@ components and modules (state sharing, APIs, styling contracts) see
   (`NodeProps` from `@vue-flow/core`, a shared `EdgeProps`), use it directly;
   don’t rename it to `<Filename>Props`. The naming rule applies to
   locally-defined interfaces.
+
+## Prefer `shallowRef`
+
+- Reactive state is a `shallowRef` by default, whatever it holds:
+  `const isOpen = shallowRef(false)`,
+  `const items = shallowRef<Array<Item>>([])`.
+- With a `shallowRef`, update objects and arrays by assigning a new value
+  (`items.value = [...items.value, item]`); mutating them in place triggers
+  nothing.
+- Use `ref` only when deep reactivity is actually used: nested state is
+  mutated in place (`items.value.push(item)`, `state.value.refCount++`) and
+  the UI has to follow.
+- `ref` wraps every object it holds in a deep proxy and tracks each nested
+  read; `shallowRef` tracks `.value` alone.
 
 ## Composable anatomy
 
