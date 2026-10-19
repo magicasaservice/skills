@@ -8,7 +8,7 @@ description: >
   Covers Prettier formatting, ESLint setup, TypeScript conventions, comment
   style, and Git commit rules.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # Magic as a Service™ Conventions
@@ -130,8 +130,8 @@ are the one sanctioned exception to the no-section-comments rule; see the
 - Pick **one array syntax per project**, `Array<Item>` or `Item[]`, and use it
   everywhere; the `@typescript-eslint/array-type` rule enforces the choice. In
   an existing project, match the form already in use.
-- Give every type a **descriptive name**. No single-letter names; this includes
-  generic type parameters (`Array<ElementType>`, not `Array<T>`).
+- Give every type a **descriptive name**, no abbreviations or single letters.
+  Generic type parameters are the exception: `<T>` is fine there.
 - **No `as` type assertions.** Narrow honestly instead: `instanceof` guards,
   type predicates (`(x): x is Thing`), and generic type parameters. An
   assertion hides real type errors. Allowed exceptions: `as const`,

@@ -73,23 +73,33 @@ export default [
 ]
 ```
 
-## Descriptive type names, no single letters
+## Descriptive type names
 
-Give every type and every generic parameter a name that says what it is. Never
-use bare single letters like `T`, `K`, or `U`.
+Give every type a name that says what it is: `UserProfile`, `OrderStatus`,
+`RequestContext`, never abbreviations that only make sense in the moment or
+single letters.
+
+Generic type parameters are the exception. `T`, `K`, or `U` are fine there,
+and so are descriptive names like `ValueType`.
 
 ```ts
 // Preferred
-interface CacheEntry<ValueType> {
-  value: ValueType
-  expiresAt: number
+interface UserProfile {
+  name: string
+  email: string
 }
 
-function first<ElementType>(items: Array<ElementType>): ElementType | undefined {
-  return items[0]
-}
+type OrderStatus = 'draft' | 'paid' | 'shipped'
 
 // Avoid
+interface UP {
+  name: string
+  email: string
+}
+
+type S = 'draft' | 'paid' | 'shipped'
+
+// Fine: single letters for generic type parameters
 interface CacheEntry<T> {
   value: T
   expiresAt: number
@@ -99,9 +109,6 @@ function first<T>(items: Array<T>): T | undefined {
   return items[0]
 }
 ```
-
-The same applies to non-generic types: prefer `UserProfile`, `OrderStatus`,
-`RequestContext` over abbreviations that only make sense in the moment.
 
 ## Object payloads over positional parameters
 
