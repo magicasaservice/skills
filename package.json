@@ -12,7 +12,7 @@
   ],
   "repository": "magicasaservice/skills",
   "license": "MIT",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Essential skills for internal agentic workflows",
   "type": "module",
   "scripts": {
