@@ -26,22 +26,51 @@ Arrow functions remain fine for inline callbacks and short expressions:
 const totals = orders.map((order) => order.amount)
 ```
 
-## Array generic over bracket syntax
+## One array syntax per project
 
-Always write the generic `Array<Item>` form rather than `Item[]`.
+`Array<Item>` and `Item[]` mean the same thing, and neither is preferred. Each
+project picks one form and uses it everywhere. In an existing project, match
+the form its code already uses. The examples in these references use the
+generic form.
 
 ```ts
-// Preferred
+// Fine: the generic form, everywhere
 function tagsFor(post: Post): Array<string> {
   return post.tags
 }
 
 const ids: Array<number> = []
 
-// Avoid
+// Fine: the bracket form, everywhere
 function tagsFor(post: Post): string[] {
   return post.tags
 }
+
+const ids: number[] = []
+
+// Avoid: both forms in one project
+function tagsFor(post: Post): Array<string> {
+  return post.tags
+}
+
+const ids: number[] = []
+```
+
+Lock the choice in with the `@typescript-eslint/array-type` rule. The shared
+presets leave it unset, so add it when extending the project’s preset, with
+`default: 'generic'` for `Array<Item>` or `default: 'array'` for `Item[]`:
+
+```js
+import { typescriptPreset } from '@maas/config/eslint-typescript-preset.mjs'
+
+export default [
+  ...typescriptPreset,
+  {
+    rules: {
+      '@typescript-eslint/array-type': ['error', { default: 'generic' }],
+    },
+  },
+]
 ```
 
 ## Descriptive type names, no single letters
@@ -66,7 +95,7 @@ interface CacheEntry<T> {
   expiresAt: number
 }
 
-function first<T>(items: T[]): T | undefined {
+function first<T>(items: Array<T>): T | undefined {
   return items[0]
 }
 ```

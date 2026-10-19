@@ -8,7 +8,7 @@ description: >
   Covers Prettier formatting, ESLint setup, TypeScript conventions, comment
   style, and Git commit rules.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Magic as a Service™ Conventions
@@ -127,7 +127,9 @@ are the one sanctioned exception to the no-section-comments rule; see the
 
 - Write **function declarations**, not function expressions, for named
   functions (`function loadUser() {}`, not `const loadUser = () => {}`).
-- Use the **`Array<Item>` generic form**, never the `Item[]` bracket form.
+- Pick **one array syntax per project**, `Array<Item>` or `Item[]`, and use it
+  everywhere; the `@typescript-eslint/array-type` rule enforces the choice. In
+  an existing project, match the form already in use.
 - Give every type a **descriptive name**. No single-letter names; this includes
   generic type parameters (`Array<ElementType>`, not `Array<T>`).
 - **No `as` type assertions.** Narrow honestly instead: `instanceof` guards,
