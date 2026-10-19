@@ -8,7 +8,7 @@ description: >
   work inside a Nuxt layer or app/modules directory. Covers feature modules,
   the control-plane pattern, instance ID enums, and data-attribute contracts.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Magic as a Service™ Nuxt Architecture

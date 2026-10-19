@@ -97,9 +97,6 @@ onClickOutside(container, callback, {
 
 ## Supporting utilities worth reusing
 
-- `createContext<T>('ProviderName')`: Radix-style tuple
-  `[injectX, provideX]` that throws a formatted error naming the required
-  provider.
 - `nextFrame()`: promisified `requestAnimationFrame` for sequencing
   layout-dependent work.
 - Chrome bounds via `useState` keys: measuring components publish
