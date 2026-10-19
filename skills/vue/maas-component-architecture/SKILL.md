@@ -11,7 +11,7 @@ description: >
   emitter-based communication, inversion of control, styling APIs, and
   bundled options.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Magic as a Service™ Component Architecture

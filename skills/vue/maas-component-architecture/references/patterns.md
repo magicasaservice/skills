@@ -14,23 +14,26 @@ export function createStateStore<T>(
   key: string,
   setInitialValue: () => T
 ): CreateStore<T> {
-  return function getOrCreateStore(): Ref<T> {
+  return function getOrCreateStore(): ShallowRef<T> {
     const instance = getCurrentInstance()
     const app = instance?.appContext.app
 
     // If no app instance is found, return a fresh store
     if (!app || !key) {
-      return ref(setInitialValue()) as Ref<T>
+      return shallowRef(setInitialValue())
     }
 
     if (!app.config.globalProperties.__stateStores) {
-      app.config.globalProperties.__stateStores = new Map<string, Ref<T>>()
+      app.config.globalProperties.__stateStores = new Map<
+        string,
+        ShallowRef<T>
+      >()
     }
 
     let store = app.config.globalProperties.__stateStores.get(key)
 
     if (!store) {
-      store = ref(setInitialValue()) as Ref<T>
+      store = shallowRef(setInitialValue())
       app.config.globalProperties.__stateStores.set(key, store)
     }
 
