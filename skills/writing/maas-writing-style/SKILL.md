@@ -2,13 +2,13 @@
 name: maas-writing-style
 description: >
   This skill should be used when writing prose for Magic as a Service™: blog
-  posts, articles, announcements, case studies, release notes, or the prose
+  posts, articles, announcements, case studies, release posts, or the prose
   parts of documentation. Trigger on requests to "write a post", "draft an
   article", "announce", "write about", or to edit any long-form text for a
   maas project. Covers tone of voice, narrative structure, and the stylistic
   devices that make the writing recognisable.
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
 ---
 
 # Magic as a Service™ Writing Style
@@ -135,6 +135,9 @@ For the reference-documentation page skeleton (API tables, installation tabs,
 anatomy sections), `maas-docs-style` applies on top of this voice. The
 No AI-speak list above is the single source of truth for both skills;
 `maas-docs-style` applies the same bans to reference prose.
+
+Release notes are not long-form prose and follow `maas-release-notes`
+instead.
 
 ## Additional resources
 
