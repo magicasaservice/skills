@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.10.0"
+  version: "1.11.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -45,6 +45,21 @@ example-first. Example names below are illustrative.
 - **Cause-first caveats.** Explain the mechanism, then the rule: "In order for
   the drawer to differentiate when the user scrolls and when the user drags,
   any scrollable containers need their overflow value explicitly set."
+- **One rule per caveat, and half the draft.** A caveat paragraph is one
+  rule in two or three sentences: the condition as a clause, the
+  instruction, and at most one consequence, often joined as "do X, or Y
+  happens". Cut the sentence that announces the topic ("The tray handles
+  situations where…"), the harm the rule prevents once the rule is stated,
+  and nuances that change nothing the reader types (which browser signal
+  is honored, which platforms are affected, where a synthesized event
+  lands). Component and caveat prose drafts run about twice the length the
+  page needs; halve them before calling the pass done. Pairs in
+  `references/docs-voice.md`.
+- **Mechanics, not personification.** A part never "lets a press go",
+  "returns its side to rest", "ignores the trigger", "leans", "runs its own
+  drag" or follows "from the first pixel". Name the event or state: drops
+  the press, snaps back to rest, is skipped, the axis with the larger move,
+  starts on press.
 - **No AI-speak in reference prose.** The bans from `maas-writing-style`
   apply to documentation too: no contrastive negation ("it’s not X — it’s
   Y"; say what the thing is), no hype vocabulary, no throat-clearing, no
