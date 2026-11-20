@@ -74,6 +74,7 @@ no-AI-attribution Git rule at the tool level, not just by instruction:
 | `engineering` | `maas-docs-style`             | Documentation tone of voice and page structure                        |
 | `engineering` | `maas-project-scaffolding`    | New projects from turborepo-starter; package.json conventions         |
 | `engineering` | `maas-docs-first`             | Read a technology’s docs before using it; ask when none are found     |
+| `engineering` | `maas-release-notes`          | Short release notes: fixed headings, one-sentence bullets             |
 | `vue`         | `maas-component-architecture` | Component design: standalone vs module, state composables, IoC        |
 | `vue`         | `maas-vue-conventions`        | SFC and composable code rules: props, anatomy, transitions            |
 | `vue`         | `maas-testing`                | Browser-first Vitest, concern-split files, factories, no mocking      |
@@ -83,7 +84,8 @@ no-AI-attribution Git rule at the tool level, not just by instruction:
 
 Our default stack is TypeScript, Vue, and Nuxt, and several skills assume
 it. The universal ones (`maas-conventions`, `maas-writing-style`,
-`maas-docs-style`, `maas-docs-first`) apply to any codebase.
+`maas-docs-style`, `maas-docs-first`, `maas-release-notes`) apply to any
+codebase.
 
 Skills live under `skills/<category>/<skill>/`. The plugin manifest
 ([.claude-plugin/plugin.json](.claude-plugin/plugin.json)) explicitly lists
@@ -127,7 +129,8 @@ skills/
 │   │   │   └── references/
 │   │   ├── maas-docs-style/
 │   │   ├── maas-project-scaffolding/
-│   │   └── maas-docs-first/
+│   │   ├── maas-docs-first/
+│   │   └── maas-release-notes/
 │   ├── vue/
 │   │   ├── maas-component-architecture/
 │   │   ├── maas-vue-conventions/
