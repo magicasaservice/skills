@@ -9,7 +9,7 @@ description: >
   maas repo. Covers tone of voice, page structure, frontmatter, and
   documentation principles.
 metadata:
-  version: "1.11.0"
+  version: "1.12.0"
 ---
 
 # Magic as a Service™ Documentation Style
@@ -141,6 +141,11 @@ Docs pages carry frontmatter, and rot starts there. The contract:
 - **Demos are contracts.** Live demos and previews compile against the
   current API. When an API changes, the demos change in the same session;
   a silently broken demo is worse than none.
+- **Demo prose and demo copy are exact.** The paragraph above a live demo
+  names the parts on screen and which gesture does what, in two or three
+  sentences, and never restates the API reference. Text inside a demo
+  (chat bubbles, labels, captions) states only behavior the current code
+  has: no thresholds or fractions that are not options of that demo.
 - **Open with what + when.** The first line after a page title says what the
   thing is and when to reach for it: "SideSheet is a flexible, touch enabled,
   unstyled sheet component. Useful for shopping carts, menus, as a modal
